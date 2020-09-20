@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="classes" thread-count="5">
+    <test name="Regression" >
+        <packages>
+            <package name="java.io.ctdev.tests.login.*" />
+            <package name="java.io.ctdev.tests.signup.*" />
+        </packages>
+            </test>
+</suite>
