@@ -1,4 +1,5 @@
 package io.ctdev.tests.login;
+import io.ctdev.tests.framework.driver.WebDriverSingleton;
 import io.ctdev.tests.signup.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,7 @@ public class HeaderPromUaTest extends BaseTest {
     WebDriver driver;
 
     @Test
-    public void titleVerification() throws InterruptedException {
+    public void headerPromUaTestVerification() throws InterruptedException {
         // System.setProperty("webdriver.chrome.driver", "C://Program Files//WEBDrivers//chromedriver.exe");
         driver.get("http://prom.ua");
         String expectedTitle = "Prom.ua — маркетплейс Украины";
@@ -23,11 +24,12 @@ public class HeaderPromUaTest extends BaseTest {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "C://Program Files//WEBDrivers//chromedriver.exe"); //настройки выносим в beforeClass()
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-fullscreen"); //используем options открыть full screen браузера
-        options.setHeadless(true); //запустить браузер в headless режиме, мы браузер не видим
-        driver = new ChromeDriver(options);
+       // System.setProperty("webdriver.chrome.driver", "C://Program Files//WEBDrivers//chromedriver.exe"); //настройки выносим в beforeClass()
+       // ChromeOptions options = new ChromeOptions();
+       // options.addArguments("--start-fullscreen"); //используем options открыть full screen браузера
+       // options.setHeadless(true); //запустить браузер в headless режиме, мы браузер не видим
+      //  driver = new ChromeDriver(options);
+        WebDriverSingleton.getDriver();
     }
 
     @AfterClass

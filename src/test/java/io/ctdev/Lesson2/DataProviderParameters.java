@@ -1,4 +1,4 @@
-package io.ctdev.Lesson2;
+/*package io.ctdev.Lesson2;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -15,3 +15,4 @@ public class DataProviderParameters {
         System.out.println("Data is: " + data);
     }
 }
+*/
