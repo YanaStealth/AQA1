@@ -44,7 +44,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test(description = "Registration - Negative - Validation empty email field.")
-    public void userRegistrationEmailFieldNegativeCase1() throws InterruptedException {
+    public void userRegistrationEmptyEmailFieldValidationNegativeCase() throws InterruptedException {
         System.out.println("Validation empty email field. Set focus on the email field");
         getDriver().findElement(By.id("emailControl")).click();
 
@@ -57,7 +57,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Typing invalid data to email field.")
-    public void userRegistrationEmailFieldNegativeCase2() throws InterruptedException {
+    public void userRegistrationInvalidDataEmailFieldValidationNegativeCase() throws InterruptedException {
         System.out.println("Typing invalid data to email field" + invalidUserName0);
         getDriver().findElement(By.id("emailControl")).sendKeys(invalidUserName0);
         System.out.println("Set focus out of the email field");
@@ -72,7 +72,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Validation of the empty password field.")
-    public void userRegistrationPasswordFieldNegativeCase1() throws InterruptedException {
+    public void userRegistrationEmptyPasswordFieldValidationNegativeCase() throws InterruptedException {
         System.out.println("Empty password field validation. Set focus on the email field");
         getDriver().findElement(By.id("passwordControl")).click();
 
@@ -85,7 +85,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Typing invalid data to password field -'1234'.")
-    public void userRegistrationPasswordFieldNegativeCase2() throws InterruptedException {
+    public void userRegistrationShortInvalidDataPasswordFieldValidationNegativeCase2() throws InterruptedException {
         System.out.println("Typing invalid data to password field" + invalidPassword1);
         getDriver().findElement(By.id("passwordControl")).sendKeys(invalidPassword1);
         System.out.println("Set focus out of the password field");
@@ -100,7 +100,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Typing invalid data to password field -'123456789012345678901'.")
-    public void userRegistrationPasswordFieldNegativeCase3() throws InterruptedException {
+    public void userRegistrationLongInvalidDataPasswordFieldValidationNegativeCase3() throws InterruptedException {
         System.out.println("Typing invalid data to password field" + invalidPassword2);
         getDriver().findElement(By.id("passwordControl")).sendKeys(invalidPassword2);
         System.out.println("Verifying password field validation - invalid password"+invalidPassword2);
@@ -112,7 +112,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Repeat Password field validation verification")
-    public void userRegistrationRepeatPasswordFieldNegativeCase() throws InterruptedException {
+    public void userRegistrationWrongDataRepeatPasswordFieldValidationNegativeCase() throws InterruptedException {
         System.out.println("Typing data that does not match the Password field value to Repeat Password field");
         getDriver().findElement(By.id("passwordControl")).sendKeys(password2);
         getDriver().findElement(By.id("repeatPasswordControl")).sendKeys("1");
@@ -127,7 +127,7 @@ public class RegisterUserJuiceShopTestNegative {
     }
 
     @Test (description = "Registration - Negative - Validation of the empty Security Question field.")
-    public void userRegistrationSecurityQuestionFieldNegativeCase1() throws InterruptedException {
+    public void userRegistrationEmptySecurityQuestionFieldNegativeCase1() throws InterruptedException {
         System.out.println("Empty Security Question field validation. Set focus on the email field");
         getDriver().findElement(By.id("securityAnswerControl")).click();
         System.out.println("Set focus out of the Security Question field");

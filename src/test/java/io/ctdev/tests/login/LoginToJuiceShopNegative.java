@@ -39,7 +39,7 @@ public class LoginToJuiceShopNegative {
 
 
     @Test (description = "Login -Negative Case - Login with empty email field")
-    public void emptryEmailFieldLogin() throws InterruptedException {
+    public void loginEmptyEmailFieldValidationNegativeCase() throws InterruptedException {
 
         System.out.println("Empty email field verification");
         getDriver().findElement(By.id("email")).click();
@@ -51,7 +51,7 @@ public class LoginToJuiceShopNegative {
     }
 
     @Test(description = "Login - Negative Case - Login with empty password field")
-    public void emptryPasswordFieldLogin() throws InterruptedException {
+    public void loginEmptyPasswordFieldValidationNegativeCase() throws InterruptedException {
 
         System.out.println("Empty password field verification");
         getDriver().findElement(By.id("password")).click();
@@ -63,7 +63,7 @@ public class LoginToJuiceShopNegative {
     }
 
     @Test(description = "Login - Negative Case - Login with invalid email and password fields")
-    public void invalidEmailFieldLogin() throws InterruptedException {
+    public void loginNotRegisteredUserEmailFieldValidationNegativeCase() throws InterruptedException {
 
         System.out.println("Invalid email field verification");
         getDriver().findElement(By.id("email")).sendKeys(invalidUserName1);

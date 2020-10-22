@@ -42,7 +42,7 @@ public class RegisterUserJuiceShopTestPositive {
     }
 
     @Test (description = "Registration verification - Positive")
-    public void userRegistration() throws InterruptedException {
+    public void userRegistrationPositiveCase() throws InterruptedException {
         System.out.println("Typing data to email field"+validUserName);
         getDriver().findElement(By.id("emailControl")).sendKeys(validUserName);
 

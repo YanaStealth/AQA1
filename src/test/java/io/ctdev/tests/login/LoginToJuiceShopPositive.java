@@ -39,7 +39,7 @@ public class LoginToJuiceShopPositive {
     }
 
     @Test(description = "Login verification - Positive")
-    public void userLogin() throws InterruptedException {
+    public void userLoginVerificationPositiveCase() throws InterruptedException {
 
         System.out.println("Typing user email" + validUserNameLogin);
         getDriver().findElement(By.id("email")).sendKeys(validUserNameLogin);
