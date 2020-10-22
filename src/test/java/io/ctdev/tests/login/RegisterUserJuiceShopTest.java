@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
 public class RegisterUserJuiceShopTest {
-    private String validUserName = "yana4@gmail.com";
+    private String validUserName = "yana5@gmail.com";
     private String invalidUserName1 = "yana";
     private String password = "qQ2$4";
     private String invalidPassword1 = "1234";
@@ -153,8 +153,10 @@ public class RegisterUserJuiceShopTest {
       //  getDriver().findElement(By.xpath("//*[contains(text(),'mat-select-placeholder ng-tns-c138')]")).click();
         getDriver().findElement(By.xpath("//*[contains(@class,'mat-select-placeholder ng-tns-c138')]")).click();
         Thread.sleep(2000);
-       getDriver().findElement(By.xpath("//*[contains(text(),' maiden name?')]")).click();
+       // getDriver().findElement(By.xpath("//*[contains(text(),' maiden name?')]")).click();
       //  getDriver().findElement(By.xpath("//*[contains(@class,'mat-option mat-focus-indicator ng-tns-c138-15 ng-star-inserted')]")).click();
+       //добавила экранирование: вместо ' ' поставила " и заэкранировала поставив слэш перед "
+        getDriver().findElement(By.xpath("//*[contains(text(),\"Mother's maiden name?\")]")).click();
 
         System.out.println("Typing data to Security Answer field");
         getDriver().findElement(By.id("securityAnswerControl")).sendKeys(answer);
