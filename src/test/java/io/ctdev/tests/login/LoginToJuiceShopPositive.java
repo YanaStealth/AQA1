@@ -14,7 +14,7 @@ import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
 public class LoginToJuiceShopPositive {
 
-    private String validUserNameLogin = "yana5@gmail.com";
+    private String validUserNameLogin = "yana4@gmail.com";
     private String passwordLogin = "qQ2$4";
 
 

@@ -38,7 +38,7 @@ public class LoginToJuiceShopNegative {
     }
 
 
-    @Test(description = "Login -Negative Case - Login with empty email field")
+    @Test (description = "Login -Negative Case - Login with empty email field")
     public void emptryEmailFieldLogin() throws InterruptedException {
 
         System.out.println("Empty email field verification");
