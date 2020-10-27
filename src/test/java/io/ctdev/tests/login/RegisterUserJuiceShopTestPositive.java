@@ -8,12 +8,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
 public class RegisterUserJuiceShopTestPositive {
-    private String validUserName = "yana6@gmail.com";
+   // private String validUserName = "yana6@gmail.com";
     private String password = "qQ2$4";
     private String answer = "Coopert";
 
@@ -43,6 +44,36 @@ public class RegisterUserJuiceShopTestPositive {
 
     @Test (description = "Registration verification - Positive")
     public void userRegistrationPositiveCase() throws InterruptedException {
+        // create a string of all characters
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+        // create random string builder
+        StringBuilder sb = new StringBuilder();
+
+        // create an object of Random class
+        Random random = new Random();
+
+        // specify length of random string
+        int length = 7;
+
+        for (int i = 0; i < length; i++) {
+
+            // generate random index number
+            int index = random.nextInt(alphabet.length());
+
+            // get character specified by index
+            // from the string
+            char randomChar = alphabet.charAt(index);
+
+            // append the character to string builder
+            sb.append(randomChar);
+        }
+
+        String randomString = sb.toString();
+        System.out.println("Random String is: " + randomString);
+
+        private String validUserName = randomString + "@gmail.com";
+
         System.out.println("Typing data to email field"+validUserName);
         getDriver().findElement(By.id("emailControl")).sendKeys(validUserName);
 
