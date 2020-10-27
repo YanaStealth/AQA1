@@ -14,36 +14,11 @@ import java.util.concurrent.TimeUnit;
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
 public class RegisterUserJuiceShopTestPositive {
-   // private String validUserName = "yana6@gmail.com";
+    // private String validUserName = "yana6@gmail.com";
     private String password = "qQ2$4";
     private String answer = "Coopert";
 
-    @BeforeClass
-    public void setUp() throws InterruptedException {
-        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        getDriver().get("http://3.18.213.48/");
-
-        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
-
-        System.out.println("Clicking on Account button");
-        WebElement element = getDriver().findElement(By.id("navbarAccount")); // можем либо создать объект элемента, либо напрямую его вызвать getDriver().
-        element.click();
-
-        System.out.println("Clicking on Login button");
-        getDriver().findElement(By.id("navbarLoginButton")).click();
-
-        System.out.println("Clicking 'Not yet a customer?' link");
-        getDriver().findElement(By.xpath("//*[contains(text(),'Not yet a customer?')]")).click(); //!!!!!
-        Thread.sleep(7000);
-    }
-
-    @AfterClass
-    public void tearDown() {
-        WebDriverSingleton.closeDriver();
-    }
-
-    @Test (description = "Registration verification - Positive")
-    public void userRegistrationPositiveCase() throws InterruptedException {
+    public String createRandomEmail() {
         // create a string of all characters
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -68,14 +43,43 @@ public class RegisterUserJuiceShopTestPositive {
             // append the character to string builder
             sb.append(randomChar);
         }
-
         String randomString = sb.toString();
         System.out.println("Random String is: " + randomString);
+        String randomEmail = randomString + "@gmail.com";
+        return randomEmail;
+    }
 
-        private String validUserName = randomString + "@gmail.com";
+    @BeforeClass
+    public void setUp() throws InterruptedException {
+        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        getDriver().get("http://3.18.213.48/");
 
-        System.out.println("Typing data to email field"+validUserName);
-        getDriver().findElement(By.id("emailControl")).sendKeys(validUserName);
+        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
+
+        System.out.println("Clicking on Account button");
+        WebElement element = getDriver().findElement(By.id("navbarAccount")); // можем либо создать объект элемента, либо напрямую его вызвать getDriver().
+        element.click();
+
+        System.out.println("Clicking on Login button");
+        getDriver().findElement(By.id("navbarLoginButton")).click();
+
+        System.out.println("Clicking 'Not yet a customer?' link");
+        getDriver().findElement(By.xpath("//*[contains(text(),'Not yet a customer?')]")).click(); //!!!!!
+        Thread.sleep(7000);
+    }
+
+
+    @AfterClass
+    public void tearDown() {
+        WebDriverSingleton.closeDriver();
+    }
+
+    @Test(description = "Registration verification - Positive")
+    public void userRegistrationPositiveCase() throws InterruptedException {
+        String userEmail = createRandomEmail();
+
+        System.out.println("Typing data to email field" + userEmail);
+        getDriver().findElement(By.id("emailControl")).sendKeys(userEmail);
 
         System.out.println("Typing data to password field");
         getDriver().findElement(By.id("passwordControl")).sendKeys(password);
@@ -96,10 +100,10 @@ public class RegisterUserJuiceShopTestPositive {
         getDriver().findElement(By.id("registerButton")).click();
         Thread.sleep(7000);
 
-        System.out.println("Typing user email" + validUserName);
-        getDriver().findElement(By.id("email")).sendKeys(validUserName);
+        System.out.println("Typing user email" + userEmail);
+        getDriver().findElement(By.id("email")).sendKeys(userEmail);
 
-        System.out.println("Typing user password"+password);
+        System.out.println("Typing user password" + password);
         getDriver().findElement(By.id("password")).sendKeys(password);
 
         System.out.println("Clicking on Login button");
@@ -109,9 +113,9 @@ public class RegisterUserJuiceShopTestPositive {
         getDriver().findElement(By.id("navbarAccount")).click();
 
         System.out.println("Getting user name from navigation bar");
-        Thread.sleep(2000); //добавили ожидание, тк тесты падают из-за того что не успевает прогрузиться элемент, но не советую такое делать без крайней необходимости
+        Thread.sleep(5000); //добавили ожидание, тк тесты падают из-за того что не успевает прогрузиться элемент, но не советую такое делать без крайней необходимости
         String actualUserName = getDriver().findElement(By.cssSelector("[aria-label='Go to user profile'] span")).getAttribute("innerText").trim();
-        Assert.assertEquals(actualUserName, validUserName, "User name does not match");
+        Assert.assertEquals(actualUserName, userEmail, "User name does not match");
     }
 
 
