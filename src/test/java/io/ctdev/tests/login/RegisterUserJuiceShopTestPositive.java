@@ -89,7 +89,8 @@ public class RegisterUserJuiceShopTestPositive {
 
         System.out.println("Selecting data to Security Question field");
 
-        getDriver().findElement(By.xpath("//*[contains(@class,'mat-select-placeholder ng-tns-c138')]")).click();
+        //getDriver().findElement(By.xpath("//*[contains(@class,'mat-select-placeholder ng-tns-c138')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(@class,'mat-form-field-flex ng-tns-c123-16')]")).click();
 
         getDriver().findElement(By.xpath("//*[contains(text(),\"Mother's maiden name?\")]")).click();
 

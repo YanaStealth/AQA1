@@ -2,7 +2,9 @@ package io.ctdev.tests.login;
 
 import io.ctdev.tests.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,10 +18,14 @@ public class LoginToJuiceShopNegative {
 
     private String invalidUserName1 = "yana";
     private String password = "qQ2$4";
+    WebDriver driver = getDriver(); //explicit wait
+    WebDriverWait wait; //explicit wait
+
 
     @BeforeClass
     public void setUp() throws InterruptedException {
-        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       // getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait= new WebDriverWait(driver, 500);
         getDriver().get("http://3.18.213.48/");
 
         getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
