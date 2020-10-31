@@ -1,5 +1,3 @@
-
-/*
 package io.ctdev.Lesson5;
 
 import io.ctdev.tests.framework.driver.WebDriverSingleton;
@@ -17,14 +15,12 @@ import java.util.concurrent.TimeUnit;
 
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
-public class BuySoldOutProductToBasket {
-    private String validUserNameLogin = "yana4@gmail.com";
-    private String passwordLogin = "qQ2$4";
-    Boolean isPresent;
-    Boolean expectedSoldProductInBasket=false;
-    //String actualSoldOutProductElementInBasket;
+public class BuySoldOutProductBasketCheck {
     WebDriver driver = getDriver(); //explicit wait
     WebDriverWait wait; //explicit wait
+    String expectedTotalPriceOfBasket = "Total Price: 0¤";
+    private String validUserNameLogin = "yana4@gmail.com";
+    private String passwordLogin = "qQ2$4";
 
     @BeforeClass
     public void setUp() throws InterruptedException {
@@ -44,10 +40,10 @@ public class BuySoldOutProductToBasket {
     }
 
     @Test(description = "Login verification - Positive")
-    public void checkProductCarrotJuiceContent() throws InterruptedException {
+    public void checkPossibilityToPutSoldOutProductToBasket() throws InterruptedException {
         System.out.println("Typing user email" + validUserNameLogin);
         getDriver().findElement(By.id("email")).sendKeys(validUserNameLogin);
-        System.out.println("Typing user password"+passwordLogin);
+        System.out.println("Typing user password" + passwordLogin);
         getDriver().findElement(By.id("password")).sendKeys(passwordLogin);
         System.out.println("Clicking on Login button");
         getDriver().findElement(By.id("loginButton")).click();
@@ -68,11 +64,11 @@ public class BuySoldOutProductToBasket {
         getDriver().findElement(By.xpath("//button[contains(@class,'mat-paginator-navigation-next')]")).click();
 
         System.out.println("create String with Sold out Product name");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Sold Out')]/parent::div/following-sibling::div/button[@aria-label='Add to Basket']/ancestor::mat-card//div[@class='item-name']")));
-        String soldOutProductName=getDriver().findElement(By.xpath("//span[contains(text(),'Sold Out')]/parent::div/following-sibling::div/button[@aria-label='Add to Basket']/ancestor::mat-card//div[@class='item-name']")).getText();
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Sold Out')]/parent::div/following-sibling::div/button[@aria-label='Add to Basket']/ancestor::mat-card//div[@class='item-name']")));
+        //String soldOutProductName=getDriver().findElement(By.xpath("//span[contains(text(),'Sold Out')]/parent::div/following-sibling::div/button[@aria-label='Add to Basket']/ancestor::mat-card//div[@class='item-name']")).getText();
 
         System.out.println("Put Sold out Product to the Basket");
-        getDriver().findElement(By.xpath("//span[contains(text(),'Sold Out')]/ancestor::mat-card[contains(@class,'mat-card')]//button[@aria-label='Add to Basket']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Sold Out')]/ancestor::mat-card[contains(@class,'mat-card')]//button[@aria-label='Add to Basket']"))).click();
 
         System.out.println("Open the Basket");
         getDriver().findElement(By.xpath("//button[@aria-label='Show the shopping cart']")).click();
@@ -80,16 +76,8 @@ public class BuySoldOutProductToBasket {
         getDriver().manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
         System.out.println("Check the sold Out Product presence in the Basket");
 
-        isPresent = driver.findElements(By.xpath("//app-basket[contains(text(),''+soldOutProductName)]"))>0;
-//if (isPresent=false){actualSoldOutProductElementInBasket=null;} else {actualSoldOutProductElementInBasket="a"}
-
-       // public boolean isElementPresent(By.xpath("//app-basket[contains(text(),''+soldOutProductName)]")){return driver.findElements(By.id("//app-basket[contains(text(),''+soldOutProductName)]")).size()>0;}
-      //  if (!isElementPresent(By.xpath("//app-basket[contains(text(),''+soldOutProductName)]"))) {
-       //     actualSoldOutProductElementInBasket=null;
-
-        //String actualSoldOutProductElementInBasket=getDriver().findElement(By.xpath("//app-basket[contains(text(),''+soldOutProductName)]")).getText();
-        Assert.assertEquals(isPresent, expectedSoldProductInBasket, "The Sold Out Product is in the Basket");
+        String isPresent = getDriver().findElement(By.xpath("//div[@id='price']")).getText();
+        Assert.assertEquals(isPresent, expectedTotalPriceOfBasket, "The Sold Out Product is in the Basket");
     }
 
 }
-*/

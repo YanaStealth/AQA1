@@ -17,11 +17,11 @@ import org.testng.annotations.Test;
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
 public class PutApplePomaceToBasketVerification {
+    WebDriver driver = getDriver(); //explicit wait
+    WebDriverWait wait; //explicit wait
     private String validUserNameLogin = "yana4@gmail.com";
     private String passwordLogin = "qQ2$4";
     private String expectedApplePomaceElement = "Apple Pomace";
-    WebDriver driver = getDriver(); //explicit wait
-    WebDriverWait wait; //explicit wait
 
     @BeforeClass
     public void setUp() throws InterruptedException {
@@ -41,7 +41,7 @@ public class PutApplePomaceToBasketVerification {
     }
 
     @Test(description = "Login verification - Positive")
-    public void checkProductCarrotJuiceContent() throws InterruptedException {
+    public void applePomaceProductPresenceInBasketVerification() throws InterruptedException {
         System.out.println("Typing user email" + validUserNameLogin);
         getDriver().findElement(By.id("email")).sendKeys(validUserNameLogin);
         System.out.println("Typing user password"+passwordLogin);

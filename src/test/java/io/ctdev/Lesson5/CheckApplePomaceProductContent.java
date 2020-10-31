@@ -16,8 +16,8 @@ import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 public class CheckApplePomaceProductContent {
     private String validUserNameLogin = "yana4@gmail.com";
     private String passwordLogin = "qQ2$4";
-    private String validAppleProductTitle = "Apple Pomace";
-    private String validAppleProductPrice ="0.89¤";
+    private String validApplePomaceProductTitle = "Apple Pomace";
+    private String validApplePomaceProductPrice = "0.89¤";
     WebDriver driver = getDriver(); //explicit wait
     WebDriverWait wait; //explicit wait
 
@@ -40,10 +40,10 @@ public class CheckApplePomaceProductContent {
     }
 
     @Test(description = "Login verification - Positive")
-    public void checkProductCarrotJuiceContent() throws InterruptedException {
+    public void checkApplePomaceProductContent() throws InterruptedException {
         System.out.println("Typing user email" + validUserNameLogin);
         getDriver().findElement(By.id("email")).sendKeys(validUserNameLogin);
-        System.out.println("Typing user password"+passwordLogin);
+        System.out.println("Typing user password" + passwordLogin);
         getDriver().findElement(By.id("password")).sendKeys(passwordLogin);
         System.out.println("Clicking on Login button");
         getDriver().findElement(By.id("loginButton")).click();
@@ -59,7 +59,7 @@ public class CheckApplePomaceProductContent {
         System.out.println("Refresh the page to close the window with email");
         driver.navigate().refresh();
 
-       // getDriver().findElement(By.xpath(".//*[text()='Apple Pomace']")).click(); - не сработало
+        // getDriver().findElement(By.xpath(".//*[text()='Apple Pomace']")).click(); - не сработало
         //getDriver().findElement(By.cssSelector("img[alt='Apple Pomace']")).click();
         //getDriver().findElement(By.cssSelector("[src&='apple_pressings.jpg']")).click();
         //getDriver().findElement(By.cssSelector("img[alt='Apple Pomace']")).click();
@@ -69,22 +69,15 @@ public class CheckApplePomaceProductContent {
 
         System.out.println("Click Apple Pomace Product");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'Apple Pomace')]"))).click();
-      //  Thread.sleep(3000);
+        //  Thread.sleep(3000);
 
         System.out.println("Comparing the Product title with Expected");
-        String acualAppleProductTitle=driver.findElement(By.tagName("h1")).getText();
-        Assert.assertEquals(acualAppleProductTitle, validAppleProductTitle, "Product Title does not match expected Title");
+        String acualAppleProductTitle = driver.findElement(By.tagName("h1")).getText();
+        Assert.assertEquals(acualAppleProductTitle, validApplePomaceProductTitle, "Product Title does not match expected Title");
 
         System.out.println("Comparing the Product price with Expected");
-        String actualAppleProductPrice=getDriver().findElement(By.xpath("//app-product-details[@class='ng-star-inserted']//p[@class='item-price']")).getText();
-        Assert.assertEquals(actualAppleProductPrice, validAppleProductPrice, "Product Price does not match expected Price");
+        String actualAppleProductPrice = getDriver().findElement(By.xpath("//app-product-details[@class='ng-star-inserted']//p[@class='item-price']")).getText();
+        Assert.assertEquals(actualAppleProductPrice, validApplePomaceProductPrice, "Product Price does not match expected Price");
 
- /*       String actualAppleProductPrice=getDriver().findElement(By.xpath("//app-product-details[@class='ng-star-inserted']//p[@class='item-price']")).getText();
-//app-product-details[@class='ng-star-inserted']//h1[contains(text(),'Apple Pomace')]//p[@class='item-price']
-
-
-        WebElement userNameElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Go to user profile'] span")));//explicit wait
-        String actualUserName1 = userNameElement.getAttribute("innerText").trim();
-*/
     }
 }
