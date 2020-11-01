@@ -73,7 +73,7 @@ public class BuySoldOutProductBasketCheck {
         System.out.println("Open the Basket");
         getDriver().findElement(By.xpath("//button[@aria-label='Show the shopping cart']")).click();
 
-        getDriver().manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+        //getDriver().manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
         System.out.println("Check the sold Out Product presence in the Basket");
 
         String isPresent = getDriver().findElement(By.xpath("//div[@id='price']")).getText();
