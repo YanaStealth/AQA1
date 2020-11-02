@@ -1,4 +1,4 @@
-package io.ctdev.tests.login.ExplicitWait;
+package io.ctdev.Lesson6_PageObject;
 
 import io.ctdev.tests.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;

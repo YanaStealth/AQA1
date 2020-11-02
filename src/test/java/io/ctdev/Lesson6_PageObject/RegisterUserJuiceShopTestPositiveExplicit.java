@@ -1,4 +1,4 @@
-package io.ctdev.tests.login.ExplicitWait;
+package io.ctdev.Lesson6_PageObject;
 
 import io.ctdev.tests.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;
@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 

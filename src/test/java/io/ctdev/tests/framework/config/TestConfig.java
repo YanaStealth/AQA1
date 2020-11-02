@@ -2,12 +2,24 @@ package io.ctdev.tests.framework.config;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.ConfigFactory;
-@Config.Sources({"classpath:testng.properties" })
+import org.aeonbits.owner.Reloadable;
 
-public interface TestConfig extends Config{
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({"classpath:testing.properties" })
 
-    TestConfig cfg = ConfigFactory.create(TestConfig.class); // инициализирует
+public interface TestConfig extends Config, Reloadable {
+
+  //  TestConfig cfg = ConfigFactory.create(TestConfig.class); // инициализирует
+  TestConfig cfg = ConfigFactory.create(TestConfig.class, System.getenv(), System.getProperties());
 
     @DefaultValue("chrome")
     String browser();
+
+    String baseUrl();
+
+    String env();
+
+    boolean remote();
+
+    String remoteUrl();
 }
