@@ -1,4 +1,4 @@
-package io.ctdev.Lesson6_PageObject;
+package io.ctdev.Lesson6_PageObject.loginTests;
 
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginPage;
@@ -21,25 +21,21 @@ public class LoginToJuiceShopNegativePO {
     //private String invalidUserName1 = "yana";
     //  private String password = "qQ2$4";
 
+    WebDriver driver = getDriver(); //explicit wait
+    WebDriverWait wait; //explicit wait
     private Customer customer;
     private LoginPage loginPage;
 
-    WebDriver driver = getDriver(); //explicit wait
-    WebDriverWait wait; //explicit wait
-
-
     @BeforeClass
     public void setUp() throws InterruptedException {
+
         getDriver().get(TestConfig.cfg.baseUrl());
 
-        loginPage.closeDialogWindow();
+        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
 
         wait = new WebDriverWait(driver, 500);
-
-        loginPage.clickOnAccountButton();
-
-        loginPage.clickOnLoginButton();
         customer = Customer.newBuilder().withName("yana").withPassword("qQ2$4").build();
+        loginPage = new LoginPage(driver);
     }
 
     @AfterClass
@@ -50,13 +46,11 @@ public class LoginToJuiceShopNegativePO {
 
     @Test(description = "Login -Negative Case - Login with empty email field")
     public void loginEmptyEmailFieldValidationNegativeCase() throws InterruptedException {
-
+        loginPage.clickOnAccountButton();
+        loginPage.clickOnLoginButton();
         loginPage.clickEmptyEmailFieldLoginPage();
-
         loginPage.clickEmptyPasswordFieldLoginPage();
-
         String emptyEmailFieldNotification = loginPage.getEmptyEmailFieldNotificationElement();
-
         Assert.assertEquals(emptyEmailFieldNotification, "Please provide an email address.", "Email field does not have validation for empty value");
     }
 
@@ -65,12 +59,11 @@ public class LoginToJuiceShopNegativePO {
     public void loginEmptyPasswordFieldValidationNegativeCase() throws InterruptedException {
 
         System.out.println("Empty password field verification");
-
+        loginPage.clickOnAccountButton();
+        loginPage.clickOnLoginButton();
         loginPage.clickEmptyPasswordFieldLoginPage();
         loginPage.clickEmptyEmailFieldLoginPage();
-
         String emptyPasswordFieldNotification = loginPage.getEmptyPasswordFieldNotification();
-
         Assert.assertEquals(emptyPasswordFieldNotification, "Please provide a password.", "Password field does not have validation for empty value");
 
     }
@@ -79,11 +72,10 @@ public class LoginToJuiceShopNegativePO {
     public void loginNotRegisteredUserEmailFieldValidationNegativeCase() throws InterruptedException {
 
         System.out.println("Invalid email field verification");
-
+        loginPage.clickOnAccountButton();
+        loginPage.clickOnLoginButton();
         loginPage.enterUserEmail(customer.getEmail());
-
         loginPage.enterUserPassword(customer.getPassword());
-
         loginPage.submitLoginForUser();
 
         String invalidEmailNotification = loginPage.getInvalidEmailNotificationElement();

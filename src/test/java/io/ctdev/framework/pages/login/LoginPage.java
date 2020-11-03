@@ -31,11 +31,7 @@ public class LoginPage extends AbstractPage {
        driver.get(TestConfig.cfg.baseUrl());
    }
 
-    public void closeDialogWindow() {
-        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
-    }
-
-    public String getCurrenLoggedInUserName() {
+        public String getCurrenLoggedInUserName() {
         System.out.println("Check if user is logged in. Clicking on Account button.");
         getDriver().findElement(By.id("navbarAccount")).click();
         System.out.println("Getting user name from navigation bar");

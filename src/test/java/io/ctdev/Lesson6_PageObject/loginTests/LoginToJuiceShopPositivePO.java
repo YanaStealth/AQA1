@@ -1,4 +1,4 @@
-package io.ctdev.Lesson6_PageObject;
+package io.ctdev.Lesson6_PageObject.loginTests;
 
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginFluentPage;
@@ -27,20 +27,20 @@ public class LoginToJuiceShopPositivePO {
     private WebDriver driver = getDriver(); //explicit wait
     private WebDriverWait wait; //explicit wait
     private LoginPage loginPage;
-        private LoginFluentPage fluentPage;
+    private LoginFluentPage fluentPage;
 
     @BeforeClass
     public void setUp() {
 
        getDriver().get(TestConfig.cfg.baseUrl()); //new
 
-       loginPage.closeDialogWindow();
+        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
 
         wait = new WebDriverWait(driver, 50); //explicit wait
         customer = Customer.newBuilder().withName("yana4@gmail.com").withPassword("qQ2$4").build();
        // customer2 = Customer.newBuilder().withName("yana4").build;
         loginPage = new LoginPage(driver);
-                fluentPage = new LoginFluentPage(driver);
+        fluentPage = new LoginFluentPage(driver);
     }
 
     @AfterClass
