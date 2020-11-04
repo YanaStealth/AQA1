@@ -53,7 +53,7 @@ public class RegisterUserJuiceShopTestPositivePO {
         registrationPage.typeDataToPasswordField(customer.getPassword());
         registrationPage.typeDataToRepeatPasswordField(customer.getPassword());
         registrationPage.clickSecurityQuestionField();
-        registrationPage.clickSecurityQuestionField();
+
         registrationPage.selectMothersMaidenNameSequrityQuestion();
 
         registrationPage.typeSecurityAnswer(customer.getSecurityAnswer());
