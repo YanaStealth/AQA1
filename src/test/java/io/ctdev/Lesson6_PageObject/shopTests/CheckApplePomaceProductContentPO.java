@@ -35,7 +35,7 @@ public class CheckApplePomaceProductContentPO {
     @BeforeClass
     public void setUp() throws InterruptedException {
         getDriver().get(TestConfig.cfg.baseUrl());
-        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
+
         wait = new WebDriverWait(driver, 500); //explicit wait
         customer = Customer.newBuilder().withName("yana4@gmail.com").withPassword("qQ2$4").build();
         product = Product.newBuilder().withProductName("Apple Pomace").withPrice("0.89¤").build();
@@ -51,13 +51,9 @@ public class CheckApplePomaceProductContentPO {
 
     @Test(description = "Login verification - Positive")
     public void checkApplePomaceProductContent() throws InterruptedException {
-        loginPage.clickOnAccountButton();
-        loginPage.clickOnLoginButton();
-        loginPage.enterUserEmail(customer.getEmail());
-        loginPage.enterUserPassword(customer.getPassword());
-        loginPage.submitLoginForUser();
-        String actualUserName1 = loginPage.getCurrenLoggedInUserName();
-        Assert.assertEquals(actualUserName1, customer.getEmail(), "User name does not match");
+        loginPage.closeDialoguePopup();
+
+        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
 
         shopPage.refreshCurrentPage();
 

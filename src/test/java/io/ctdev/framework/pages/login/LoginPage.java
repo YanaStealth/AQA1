@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 
@@ -30,6 +31,12 @@ public class LoginPage extends AbstractPage {
    public void openPage() {
        driver.get(TestConfig.cfg.baseUrl());
    }
+    public void closeDialoguePopup() {
+        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
+        wait = new WebDriverWait(driver, 500); //explicit wait
+    }
+
+
 
         public String getCurrenLoggedInUserName() {
         System.out.println("Check if user is logged in. Clicking on Account button.");
@@ -85,8 +92,43 @@ public class LoginPage extends AbstractPage {
         return emptyPasswordFieldNotificationElement.getAttribute("innerText").trim();
     }
     public String getInvalidEmailNotificationElement() {
-        WebElement invalidEmailNotificationElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'Invalid email or password.')]"))); //explicit wait
-        String invalidEmailNotification = invalidEmailNotificationElement.getAttribute("innerText").trim(); //explicit wait
-        return invalidEmailNotification;
+        WebElement invalidEmailOrPasswordNotificationElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'Invalid email or password.')]"))); //explicit wait
+        String invalidEmailOrPasswordNotification = invalidEmailOrPasswordNotificationElement.getAttribute("innerText").trim(); //explicit wait
+        return invalidEmailOrPasswordNotification;
     }
+
+
+    public void loginFromMainPageNCheckIfUserIsLoggedIn(String email, String password) {
+        clickOnAccountButton();
+
+        clickOnLoginButton();
+
+        enterUserEmail(email);
+
+        enterUserPassword(password);
+
+        submitLoginForUser();
+
+        String actualUserName1 = getCurrenLoggedInUserName();
+
+        Assert.assertEquals(actualUserName1, email, "User name does not match");
+    }
+
+
+
+  /*  public void loginFromMainPageNCheckIfUserIsLoggedIn1111() {
+        loginPage.clickOnAccountButton();
+
+        loginPage.clickOnLoginButton();
+
+        loginPage.enterUserEmail(customer.getEmail());
+
+        loginPage.enterUserPassword(customer.getPassword());
+
+        loginPage.submitLoginForUser();
+
+        String actualUserName1 = loginPage.getCurrenLoggedInUserName();
+
+        Assert.assertEquals(actualUserName1, customer.getEmail(), "User name does not match");
+    }  */
 }

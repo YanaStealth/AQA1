@@ -34,11 +34,8 @@ public class LoginToJuiceShopPositivePO {
 
        getDriver().get(TestConfig.cfg.baseUrl()); //new
 
-        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
-
         wait = new WebDriverWait(driver, 50); //explicit wait
         customer = Customer.newBuilder().withName("yana4@gmail.com").withPassword("qQ2$4").build();
-       // customer2 = Customer.newBuilder().withName("yana4").build;
         loginPage = new LoginPage(driver);
         fluentPage = new LoginFluentPage(driver);
     }
@@ -49,22 +46,14 @@ public class LoginToJuiceShopPositivePO {
     }
 
     @Test(description = "Login verification - Positive")
-    public void userLoginVerificationPositiveCase() throws InterruptedException {
+    public void userLoginVerificationPositiveCase() {
 
-        loginPage.clickOnAccountButton();
+        loginPage.closeDialoguePopup();
 
-        loginPage.clickOnLoginButton();
-
-        loginPage.enterUserEmail(customer.getEmail());
-
-        loginPage.enterUserPassword(customer.getPassword());
-
-        loginPage.submitLoginForUser();
-
-        String actualUserName1 = loginPage.getCurrenLoggedInUserName();
-
-        Assert.assertEquals(actualUserName1, customer.getEmail(), "User name does not match");
+        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
     }
+
+
 /*
     @Test(description = "Login verification - Positive")
     public void userIsAbleToLoginToShopPositiveCaseWithFluentInterface() {
