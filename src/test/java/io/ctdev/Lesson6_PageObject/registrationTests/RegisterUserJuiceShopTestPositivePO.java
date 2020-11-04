@@ -47,8 +47,6 @@ public class RegisterUserJuiceShopTestPositivePO {
         customer = Customer.newBuilder().withName(randomEmail).withPassword("qQ2$4").withSecurityAnswer("Coopert").build();
         registrationPage.goFromLoginToRegisterPageSkipPopup();
 
-        String userEmail = registrationPage.createRandomEmail();
-
         registrationPage.typeDataToEmailField(customer.getEmail());
         registrationPage.typeDataToPasswordField(customer.getPassword());
         registrationPage.typeDataToRepeatPasswordField(customer.getPassword());
