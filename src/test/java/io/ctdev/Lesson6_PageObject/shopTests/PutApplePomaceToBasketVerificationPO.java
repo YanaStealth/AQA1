@@ -27,7 +27,7 @@ public class PutApplePomaceToBasketVerificationPO {
     private ShopPage shopPage;
 
     @BeforeClass
-    public void setUp() throws InterruptedException {
+    public void setUp() {
         getDriver().get(TestConfig.cfg.baseUrl());
         wait = new WebDriverWait(driver, 500); //explicit wait
         customer = Customer.newBuilder().withName("yana4@gmail.com").withPassword("qQ2$4").build();
@@ -41,11 +41,11 @@ public class PutApplePomaceToBasketVerificationPO {
     }
 
     @Test(description = "Login verification - Positive")
-    public void applePomaceProductPresenceInBasketVerification()  {
+    public void applePomaceProductPresenceInBasketVerification() {
         loginPage.closeDialoguePopup();
+        //loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
 
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
-
+        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
         driver.navigate().refresh();
 
         shopPage.putApplePomaceProductToBasket();

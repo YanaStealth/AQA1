@@ -20,10 +20,7 @@ import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
 public class LoginToJuiceShopPositivePO {
 
     private Customer customer;
-   // private Customer customer2;
 
-    // private String validUserNameLogin = "yana4@gmail.com";
-    // private String passwordLogin = "qQ2$4";
     private WebDriver driver = getDriver(); //explicit wait
     private WebDriverWait wait; //explicit wait
     private LoginPage loginPage;
@@ -50,7 +47,10 @@ public class LoginToJuiceShopPositivePO {
 
         loginPage.closeDialoguePopup();
 
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
+       // loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
+        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
+        String actualLoggedInName=loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
+        Assert.assertEquals(actualLoggedInName, customer.getEmail(), "User name does not match");
     }
 
 

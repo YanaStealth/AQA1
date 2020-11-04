@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -27,11 +28,9 @@ public class LoginToJuiceShopNegativePO {
     private LoginPage loginPage;
 
     @BeforeClass
-    public void setUp() throws InterruptedException {
+    public void setUp() {
 
         getDriver().get(TestConfig.cfg.baseUrl());
-
-        getDriver().findElement(By.cssSelector("[class*='close-dialog']")).click();
 
         wait = new WebDriverWait(driver, 500);
         customer = Customer.newBuilder().withName("yana").withPassword("qQ2$4").build();
@@ -44,8 +43,10 @@ public class LoginToJuiceShopNegativePO {
     }
 
 
+
     @Test(description = "Login -Negative Case - Login with empty email field")
-    public void loginEmptyEmailFieldValidationNegativeCase() throws InterruptedException {
+    public void loginEmptyEmailFieldValidationNegativeCase()  {
+        loginPage.closeDialoguePopup();
         loginPage.clickOnAccountButton();
         loginPage.clickOnLoginButton();
         loginPage.clickEmptyEmailFieldLoginPage();
@@ -56,8 +57,8 @@ public class LoginToJuiceShopNegativePO {
 
 
     @Test(description = "Login - Negative Case - Login with empty password field")
-    public void loginEmptyPasswordFieldValidationNegativeCase() throws InterruptedException {
-
+    public void loginEmptyPasswordFieldValidationNegativeCase()  {
+        loginPage.closeDialoguePopup();
         System.out.println("Empty password field verification");
         loginPage.clickOnAccountButton();
         loginPage.clickOnLoginButton();
@@ -69,8 +70,8 @@ public class LoginToJuiceShopNegativePO {
     }
 
     @Test(description = "Login - Negative Case - Login with invalid email and password fields")
-    public void loginNotRegisteredUserEmailFieldValidationNegativeCase() throws InterruptedException {
-
+    public void loginNotRegisteredUserEmailFieldValidationNegativeCase() {
+        loginPage.closeDialoguePopup();
         System.out.println("Invalid email field verification");
         loginPage.clickOnAccountButton();
         loginPage.clickOnLoginButton();

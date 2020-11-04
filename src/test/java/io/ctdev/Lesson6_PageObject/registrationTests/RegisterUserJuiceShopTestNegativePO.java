@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class RegisterUserJuiceShopTestNegativePO {
     private RegistrationPage registrationPage;
 
     @BeforeClass
-    public void setUp() throws InterruptedException {
+    public void setUp()  {
         getDriver().get(TestConfig.cfg.baseUrl());
         wait = new WebDriverWait(driver, 500); //explicit wait
         customer = Customer.newBuilder().withName("yan1").build();
@@ -45,6 +46,13 @@ public class RegisterUserJuiceShopTestNegativePO {
     @AfterClass
     public void tearDown() {
         WebDriverSingleton.closeDriver();
+    }
+
+    @AfterMethod
+    public void clearFields(){
+        registrationPage.clearEmailField();
+        registrationPage.clearPasswordField();
+        registrationPage.clearRepeatPasswordField();
     }
 
     @Test(description = "Registration - Negative - Validation empty email field.")
@@ -71,7 +79,7 @@ public class RegisterUserJuiceShopTestNegativePO {
 
         String invalidEmailNotification = registrationPage.getInvalidEmailFieldNotification();
         Assert.assertEquals(invalidEmailNotification, "Email address is not valid.", "Email field does not have validation for invalid value");
-        registrationPage.clearEmailField();
+
     }
 
     @Test(description = "Registration - Negative - Validation of the empty password field.")
@@ -94,7 +102,7 @@ public class RegisterUserJuiceShopTestNegativePO {
         String invalidPasswordNotification1 = registrationPage.getInvalidPasswordNotification();
 
         Assert.assertEquals(invalidPasswordNotification1, "Password must be 5-20 characters long.", "Password field does not have validation for invalid value");
-        registrationPage.clearPasswordField();
+
     }
 
 
@@ -108,7 +116,7 @@ public class RegisterUserJuiceShopTestNegativePO {
         String invalidPasswordNotification2 = registrationPage.getInvalidPasswordNotification();
 
         Assert.assertEquals(invalidPasswordNotification2, "Password must be 5-20 characters long.", "Password field does not have validation for invalid value");
-        registrationPage.clearPasswordField();
+     //   registrationPage.clearPasswordField();
 
     }
 
@@ -124,8 +132,8 @@ public class RegisterUserJuiceShopTestNegativePO {
 
         String passwordsDoNotMatch = registrationPage.getPasswordDoNotMatchNotification();
         Assert.assertEquals(passwordsDoNotMatch, "Passwords do not match", "Repeat Password field does not have validation for invalid value");
-        registrationPage.clearPasswordField();
-        registrationPage.clearRepeatPasswordField();
+       // registrationPage.clearPasswordField();
+      //  registrationPage.clearRepeatPasswordField();
     }
 
 

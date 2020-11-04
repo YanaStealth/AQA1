@@ -1,3 +1,4 @@
+
 package io.ctdev.Lesson6_PageObject.shopTests;
 
 import io.ctdev.framework.model.Customer;
@@ -5,10 +6,7 @@ import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.shop.ShopPage;
 import io.ctdev.tests.framework.config.TestConfig;
 import io.ctdev.tests.framework.driver.WebDriverSingleton;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -24,13 +22,8 @@ public class BuySoldOutProductBasketCheckPO {
     private LoginPage loginPage;
     private ShopPage shopPage;
 
-    /*
-    String expectedTotalPriceOfBasket = "Total Price: 0¤";
-    private String validUserNameLogin = "yana4@gmail.com";
-    private String passwordLogin = "qQ2$4"; */
-
-    @BeforeClass
-    public void setUp() throws InterruptedException {
+@BeforeClass
+    public void setUp() {
         getDriver().get(TestConfig.cfg.baseUrl());
 
         wait = new WebDriverWait(driver, 500); //explicit wait
@@ -49,7 +42,9 @@ public class BuySoldOutProductBasketCheckPO {
 
         loginPage.closeDialoguePopup();
 
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
+        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
+
+       // loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
 
         shopPage.refreshCurrentPage();
 

@@ -1,5 +1,6 @@
 package io.ctdev.framework.pages.login;
 
+import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.AbstractPage;
 import io.ctdev.tests.framework.config.TestConfig;
 import org.openqa.selenium.By;
@@ -98,7 +99,7 @@ public class LoginPage extends AbstractPage {
     }
 
 
-    public void loginFromMainPageNCheckIfUserIsLoggedIn(String email, String password) {
+ /*   public void loginFromMainPageNCheckIfUserIsLoggedIn(String email, String password) {
         clickOnAccountButton();
 
         clickOnLoginButton();
@@ -112,8 +113,21 @@ public class LoginPage extends AbstractPage {
         String actualUserName1 = getCurrenLoggedInUserName();
 
         Assert.assertEquals(actualUserName1, email, "User name does not match");
-    }
+    }*/
+    public String loginFromMainPageNCheckIfUserIsLoggedIn(Customer customer) {
+        clickOnAccountButton();
 
+        clickOnLoginButton();
+
+        enterUserEmail(customer.getEmail());
+
+        enterUserPassword(customer.getPassword());
+
+        submitLoginForUser();
+
+        String actualUserName1 = getCurrenLoggedInUserName();
+      return actualUserName1;
+    }
 
 
   /*  public void loginFromMainPageNCheckIfUserIsLoggedIn1111() {
