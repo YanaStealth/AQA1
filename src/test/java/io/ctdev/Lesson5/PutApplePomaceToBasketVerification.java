@@ -1,7 +1,7 @@
 
 package io.ctdev.Lesson5;
 
-import io.ctdev.tests.framework.driver.WebDriverSingleton;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 
 
-import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class PutApplePomaceToBasketVerification {
     WebDriver driver = getDriver(); //explicit wait

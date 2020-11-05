@@ -1,7 +1,6 @@
 package io.ctdev.tests.login;
 
-import io.ctdev.tests.framework.driver.WebDriverSingleton;
-import io.ctdev.tests.signup.BaseTest;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class MyFirstTest {
     WebDriver driver;

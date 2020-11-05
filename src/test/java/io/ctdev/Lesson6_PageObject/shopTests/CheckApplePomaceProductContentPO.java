@@ -5,8 +5,8 @@ import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.model.Product;
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.shop.ShopPage;
-import io.ctdev.tests.framework.config.TestConfig;
-import io.ctdev.tests.framework.driver.WebDriverSingleton;
+import io.ctdev.framework.config.TestConfig;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class CheckApplePomaceProductContentPO {
 

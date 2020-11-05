@@ -1,6 +1,6 @@
 package io.ctdev.tests.login;
 
-import io.ctdev.tests.framework.driver.WebDriverSingleton;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static io.ctdev.tests.framework.driver.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class RegisterUserJuiceShopTestPositive {
     // private String validUserName = "yana6@gmail.com";

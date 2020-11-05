@@ -1,9 +1,7 @@
 package io.ctdev.tests.login;
-import io.ctdev.tests.framework.driver.WebDriverSingleton;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import io.ctdev.tests.signup.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
