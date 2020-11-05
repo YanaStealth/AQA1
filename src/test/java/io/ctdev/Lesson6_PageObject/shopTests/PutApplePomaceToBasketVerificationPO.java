@@ -42,9 +42,10 @@ public class PutApplePomaceToBasketVerificationPO {
     @Test(description = "Login verification - Positive")
     public void applePomaceProductPresenceInBasketVerification() {
         loginPage.closeDialoguePopup();
-        //loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
+        loginPage.loginFromMainPage(customer);
+        String actualUserName = loginPage.getCurrenLoggedInUserName();
+        Assert.assertEquals(actualUserName, customer.getEmail(), "User name does not match");
 
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
         driver.navigate().refresh();
 
         shopPage.putApplePomaceProductToBasket();

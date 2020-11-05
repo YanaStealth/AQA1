@@ -47,6 +47,9 @@ public class LoginPage extends AbstractPage {
         return actualUserName1;
     }
 
+
+
+
     public void submitLoginForUser() {
         System.out.println("Clicking on Login button");
         getDriver().findElement(By.id("loginButton")).click();
@@ -113,7 +116,7 @@ public class LoginPage extends AbstractPage {
 
         Assert.assertEquals(actualUserName1, email, "User name does not match");
     }*/
-    public String loginFromMainPageNCheckIfUserIsLoggedIn(Customer customer) {
+    public void loginFromMainPage(Customer customer) {
         clickOnAccountButton();
 
         clickOnLoginButton();
@@ -124,9 +127,10 @@ public class LoginPage extends AbstractPage {
 
         submitLoginForUser();
 
-        String actualUserName1 = getCurrenLoggedInUserName();
-      return actualUserName1;
+      //  String actualUserName1 = getCurrenLoggedInUserName();
+    //  return actualUserName1;
     }
+
 
 
   /*  public void loginFromMainPageNCheckIfUserIsLoggedIn1111() {

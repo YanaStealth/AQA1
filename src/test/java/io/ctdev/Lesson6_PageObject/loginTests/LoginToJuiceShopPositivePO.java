@@ -41,13 +41,10 @@ public class LoginToJuiceShopPositivePO {
 
     @Test(description = "Login verification - Positive")
     public void userLoginVerificationPositiveCase() {
-
         loginPage.closeDialoguePopup();
-
-       // loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
-        String actualLoggedInName=loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
-        Assert.assertEquals(actualLoggedInName, customer.getEmail(), "User name does not match");
+        loginPage.loginFromMainPage(customer);
+        String actualUserName = loginPage.getCurrenLoggedInUserName();
+        Assert.assertEquals(actualUserName, customer.getEmail(), "User name does not match");
     }
 
 

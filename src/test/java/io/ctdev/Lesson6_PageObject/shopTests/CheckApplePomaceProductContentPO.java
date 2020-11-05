@@ -47,7 +47,10 @@ public class CheckApplePomaceProductContentPO {
         loginPage.closeDialoguePopup();
 
         // loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer.getEmail(), customer.getPassword());
-        loginPage.loginFromMainPageNCheckIfUserIsLoggedIn(customer);
+        loginPage.loginFromMainPage(customer);
+
+        String actualUserName = loginPage.getCurrenLoggedInUserName();
+        Assert.assertEquals(actualUserName, customer.getEmail(), "User name does not match");
 
         shopPage.refreshCurrentPage();
 
