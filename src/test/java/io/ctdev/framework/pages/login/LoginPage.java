@@ -4,6 +4,7 @@ import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.AbstractPage;
 import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,6 +43,7 @@ public class LoginPage extends AbstractPage {
         System.out.println("Check if user is logged in. Clicking on Account button.");
         getDriver().findElement(By.id("navbarAccount")).click();
         System.out.println("Getting user name from navigation bar");
+
         WebElement userNameElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Go to user profile'] span")));//explicit wait
         String actualUserName1 = userNameElement.getAttribute("innerText").trim();//explicit wait
         return actualUserName1;
@@ -100,6 +102,14 @@ public class LoginPage extends AbstractPage {
         return invalidEmailOrPasswordNotification;
     }
 
+    public void clearCookies()   {
+
+        getDriver().manage().addCookie(new Cookie("language", "en"));
+        getDriver().findElement(By.id("email")).clear();
+        getDriver().findElement(By.id("password")).clear();
+
+    }
+
 
  /*   public void loginFromMainPageNCheckIfUserIsLoggedIn(String email, String password) {
         clickOnAccountButton();
@@ -118,20 +128,17 @@ public class LoginPage extends AbstractPage {
     }*/
     public void loginFromMainPage(Customer customer) {
         clickOnAccountButton();
-
         clickOnLoginButton();
-
         enterUserEmail(customer.getEmail());
-
         enterUserPassword(customer.getPassword());
-
         submitLoginForUser();
-
-      //  String actualUserName1 = getCurrenLoggedInUserName();
-    //  return actualUserName1;
     }
 
-
+    public void loginFromLoginPage(Customer customer) {
+        enterUserEmail(customer.getEmail());
+        enterUserPassword(customer.getPassword());
+        submitLoginForUser();
+          }
 
   /*  public void loginFromMainPageNCheckIfUserIsLoggedIn1111() {
         loginPage.clickOnAccountButton();

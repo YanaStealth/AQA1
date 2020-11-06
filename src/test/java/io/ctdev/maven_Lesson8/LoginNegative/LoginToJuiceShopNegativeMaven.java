@@ -1,9 +1,9 @@
-package io.ctdev.Lesson6_PageObject.loginTests;
+package io.ctdev.maven_Lesson8.LoginNegative;
 
-import io.ctdev.framework.model.Customer;
-import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.driver.WebDriverSingleton;
+import io.ctdev.framework.model.Customer;
+import io.ctdev.framework.pages.login.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -13,10 +13,7 @@ import org.testng.annotations.Test;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
-public class LoginToJuiceShopNegativePO {
-
-    //private String invalidUserName1 = "yana";
-    //  private String password = "qQ2$4";
+public class LoginToJuiceShopNegativeMaven {
 
     WebDriver driver = getDriver(); //explicit wait
     WebDriverWait wait; //explicit wait
@@ -54,7 +51,7 @@ public class LoginToJuiceShopNegativePO {
 
     @Test(description = "Login - Negative Case - Login with empty password field")
     public void loginEmptyPasswordFieldValidationNegativeCase()  {
-       // loginPage.closeDialoguePopup();
+        // loginPage.closeDialoguePopup();
         System.out.println("Empty password field verification");
         loginPage.clickOnAccountButton();
         loginPage.clickOnLoginButton();
@@ -67,7 +64,7 @@ public class LoginToJuiceShopNegativePO {
 
     @Test(description = "Login - Negative Case - Login with invalid email and password fields")
     public void loginNotRegisteredUserEmailFieldValidationNegativeCase() {
-      //  loginPage.closeDialoguePopup();
+        //  loginPage.closeDialoguePopup();
         System.out.println("Invalid email field verification");
         loginPage.clickOnAccountButton();
         loginPage.clickOnLoginButton();
@@ -78,9 +75,7 @@ public class LoginToJuiceShopNegativePO {
         String invalidEmailNotification = loginPage.getInvalidEmailNotificationElement();
 
         Assert.assertEquals(invalidEmailNotification, "Invalid email or password.", "Email and password fields do not have validation for invalid values");
-
     }
-
 }
 
 

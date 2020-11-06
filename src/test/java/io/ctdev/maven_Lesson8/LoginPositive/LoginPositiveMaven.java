@@ -1,10 +1,10 @@
-package io.ctdev.Lesson6_PageObject.loginTests;
+package io.ctdev.maven_Lesson8.LoginPositive;
 
+import io.ctdev.framework.config.TestConfig;
+import io.ctdev.framework.driver.WebDriverSingleton;
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginFluentPage;
 import io.ctdev.framework.pages.login.LoginPage;
-import io.ctdev.framework.config.TestConfig;
-import io.ctdev.framework.driver.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
-public class LoginToJuiceShopPositivePO {
+public class LoginPositiveMaven {
 
     private Customer customer;
 
@@ -26,12 +26,15 @@ public class LoginToJuiceShopPositivePO {
     @BeforeClass
     public void setUp() {
 
-       // getDriver().get(TestConfig.cfg.baseUrl()); //new
+        //getDriver().get(TestConfig.cfg.baseUrl()); //new
 
         wait = new WebDriverWait(driver, 50); //explicit wait
         customer = Customer.newBuilder().withName("yana4@gmail.com").withPassword("qQ2$4").build();
-        loginPage = new LoginPage(driver);
         fluentPage = new LoginFluentPage(driver);
+        loginPage = new LoginPage(driver);
+        driver.get(TestConfig.cfg.baseUrl());
+        loginPage.closeDialoguePopup();
+
     }
 
     @AfterClass
@@ -41,8 +44,7 @@ public class LoginToJuiceShopPositivePO {
 
     @Test(description = "Login verification - Positive")
     public void userLoginVerificationPositiveCase() {
-        driver.get(TestConfig.cfg.baseUrl() + "#/login");
-        loginPage.closeDialoguePopup();
+
         loginPage.loginFromMainPage(customer);
         String actualUserName = loginPage.getCurrenLoggedInUserName();
         Assert.assertEquals(actualUserName, customer.getEmail(), "User name does not match");
