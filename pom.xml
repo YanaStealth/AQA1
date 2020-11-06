@@ -78,7 +78,8 @@
         <version>2.8</version>
       </plugin>
     </plugins>
-    <plugins>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -138,7 +139,7 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-    </plugins>
-
+      </plugins>
+    </pluginManagement>
   </build>
 </project>
