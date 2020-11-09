@@ -4,33 +4,40 @@ import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.driver.WebDriverSingleton;
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginPage;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
+@Epic("Signin/SignUp")
+@Story("Login")
 public class LoginToJuiceShopNegativeMaven {
 
-    WebDriver driver = getDriver(); //explicit wait
+    WebDriver driver;//explicit wait
     WebDriverWait wait; //explicit wait
     private Customer customer;
     private LoginPage loginPage;
 
     @BeforeClass
     public void setUp() {
-
-        getDriver().get(TestConfig.cfg.baseUrl());
-
-        wait = new WebDriverWait(driver, 500);
+        driver = getDriver();
+        wait = new WebDriverWait(driver, 5);
         customer = Customer.newBuilder().withName("yana").withPassword("qQ2$4").build();
         loginPage = new LoginPage(driver);
     }
 
-    @AfterClass
+    @BeforeMethod
+    public void navigateToBaseUrl() {
+        driver.get(TestConfig.cfg.baseUrl());
+    }
+
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         WebDriverSingleton.closeDriver();
     }
@@ -77,5 +84,4 @@ public class LoginToJuiceShopNegativeMaven {
         Assert.assertEquals(invalidEmailNotification, "Invalid email or password.", "Email and password fields do not have validation for invalid values");
     }
 }
-
 

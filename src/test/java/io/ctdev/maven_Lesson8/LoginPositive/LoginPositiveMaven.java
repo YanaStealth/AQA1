@@ -5,6 +5,9 @@ import io.ctdev.framework.driver.WebDriverSingleton;
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginFluentPage;
 import io.ctdev.framework.pages.login.LoginPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,6 +17,8 @@ import org.testng.annotations.Test;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
+@Epic("Signin/SignUp")
+@Story("Login")
 public class LoginPositiveMaven {
 
     private Customer customer;
@@ -43,6 +48,7 @@ public class LoginPositiveMaven {
     }
 
     @Test(description = "Login verification - Positive")
+    @Description("Login verification - Positive")
     public void userLoginVerificationPositiveCase() {
 
         loginPage.loginFromMainPage(customer);

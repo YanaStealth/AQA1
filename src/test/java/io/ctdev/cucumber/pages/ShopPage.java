@@ -1,7 +1,7 @@
-package io.ctdev.framework.pages.shop;
+package io.ctdev.cucumber.pages;
 
-import io.ctdev.framework.pages.AbstractPage;
 import io.ctdev.framework.config.TestConfig;
+import io.ctdev.framework.pages.AbstractPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

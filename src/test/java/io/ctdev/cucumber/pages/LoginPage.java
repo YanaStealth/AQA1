@@ -1,8 +1,8 @@
-package io.ctdev.framework.pages.login;
+package io.ctdev.cucumber.pages;
 
+import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.AbstractPage;
-import io.ctdev.framework.config.TestConfig;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;

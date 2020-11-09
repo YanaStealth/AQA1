@@ -62,7 +62,4 @@ public class RegisterUserJuiceShopTestPositivePO {
         Assert.assertEquals(actualUserName, randomEmail, "User name does not match");
     }
 
-
-
-
 }
